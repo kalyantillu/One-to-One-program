@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NinthbootapiApplication {
+public class ManytoOnebootapiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NinthbootapiApplication.class, args);
+		SpringApplication.run(ManytoOnebootapiApplication.class, args);
 	}
 
 }

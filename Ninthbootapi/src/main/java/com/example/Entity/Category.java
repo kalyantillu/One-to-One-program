@@ -1,11 +1,14 @@
 package com.example.Entity;
 
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+//import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 
@@ -14,75 +17,71 @@ import jakarta.persistence.OneToOne;
 public class Category {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	private String category_1;
-	private String category_2;
-	private String category_3;
+	private Long categoryid;
+	private String categoryname;
+	private String categorydescp;
   
-    @OneToOne(cascade = CascadeType.ALL)
- 	@JoinColumn(name="p_Id", referencedColumnName="id")
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinTable(name="Category_product",            
+	joinColumns = { @JoinColumn(name="m_id")},
+	inverseJoinColumns= { @JoinColumn(name="n_categoryid")})  // @JsonManagedReference
  	private Product n;
 
-	public Long getId() {
-		return id;
-	}
+public Long getCategoryid() {
+	return categoryid;
+}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+public void setCategoryid(Long categoryid) {
+	this.categoryid = categoryid;
+}
 
-	public String getCategory_1() {
-		return category_1;
-	}
+public String getCategoryname() {
+	return categoryname;
+}
 
-	public void setCategory_1(String category_1) {
-		this.category_1 = category_1;
-	}
+public void setCategoryname(String categoryname) {
+	this.categoryname = categoryname;
+}
 
-	public String getCategory_2() {
-		return category_2;
-	}
+public String getCategorydescp() {
+	return categorydescp;
+}
 
-	public void setCategory_2(String category_2) {
-		this.category_2 = category_2;
-	}
+public void setCategorydescp(String categorydescp) {
+	this.categorydescp = categorydescp;
+}
 
-	public String getCategory_3() {
-		return category_3;
-	}
+public Product getN() {
+	return n;
+}
 
-	public void setCategory_3(String category_3) {
-		this.category_3 = category_3;
-	}
+public void setN(Product n) {
+	this.n = n;
+}
 
-	public Product getN() {
-		return n;
-	}
+public Category(Long categoryid, String categoryname, String categorydescp, Product n) {
+	super();
+	this.categoryid = categoryid;
+	this.categoryname = categoryname;
+	this.categorydescp = categorydescp;
+	this.n = n;
+}
 
-	public void setN(Product n) {
-		this.n = n;
-	}
+public Category() {
+	super();
+	// TODO Auto-generated constructor stub
+}
 
-	public Category(Long id, String category_1, String category_2, String category_3, Product n) {
-		super();
-		this.id = id;
-		this.category_1 = category_1;
-		this.category_2 = category_2;
-		this.category_3 = category_3;
-		this.n = n;
-	}
+@Override
+public String toString() {
+	return "Category [categoryid=" + categoryid + ", categoryname=" + categoryname + ", categorydescp=" + categorydescp
+			+ ", n=" + n + "]";
+}
 
-	public Category() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", category_1=" + category_1 + ", category_2=" + category_2 + ", category_3="
-				+ category_3 + ", n=" + n + "]";
-	}
      
-    
- 
+	// @ManyToOne(cascade = CascadeType.ALL)
+	 //	@JoinColumn(name="p_Id", referencedColumnName="id")
+	 //	private Product n;
+	 
 }

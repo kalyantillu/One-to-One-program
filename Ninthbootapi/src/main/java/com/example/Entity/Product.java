@@ -1,9 +1,12 @@
 package com.example.Entity;
 
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 
@@ -11,39 +14,51 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String dress_products;
-	private String milk_products;
-	private String cosmetics_products;
+	private String productname;
+	private String producttype;
+	private String produtdescp;
+	
+	@OneToOne(mappedBy="n",cascade = CascadeType.ALL)
+	//@JsonIgnore
+	private Category m;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDress_products() {
-		return dress_products;
+	public String getProductname() {
+		return productname;
 	}
-	public void setDress_products(String dress_products) {
-		this.dress_products = dress_products;
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
-	public String getMilk_products() {
-		return milk_products;
+	public String getProducttype() {
+		return producttype;
 	}
-	public void setMilk_products(String milk_products) {
-		this.milk_products = milk_products;
+	public void setProducttype(String producttype) {
+		this.producttype = producttype;
 	}
-	public String getCosmetics_products() {
-		return cosmetics_products;
+	public String getProdutdescp() {
+		return produtdescp;
 	}
-	public void setCosmetics_products(String cosmetics_products) {
-		this.cosmetics_products = cosmetics_products;
+	public void setProdutdescp(String produtdescp) {
+		this.produtdescp = produtdescp;
 	}
-	public Product(Long id, String dress_products, String milk_products, String cosmetics_products) {
+	public Category getM() {
+		return m;
+	}
+	public void setM(Category m) {
+		this.m = m;
+	}
+	public Product(Long id, String productname, String producttype, String produtdescp, Category m) {
 		super();
 		this.id = id;
-		this.dress_products = dress_products;
-		this.milk_products = milk_products;
-		this.cosmetics_products = cosmetics_products;
+		this.productname = productname;
+		this.producttype = producttype;
+		this.produtdescp = produtdescp;
+		this.m = m;
 	}
 	public Product() {
 		super();
@@ -51,9 +66,9 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", dress_products=" + dress_products + ", milk_products=" + milk_products
-				+ ", cosmetics_products=" + cosmetics_products + "]";
+		return "Product [id=" + id + ", productname=" + productname + ", producttype=" + producttype + ", produtdescp="
+				+ produtdescp + ", m=" + m + "]";
 	}
-	
+
 	
 }
